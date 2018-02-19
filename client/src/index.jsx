@@ -16,11 +16,30 @@ class App extends React.Component {
     }
   }
 
-  
+  modifyList (need, number) {
+    console.log('Clicked');
+    // for (var i = 0; i < this.state.list.length; i++) {
+    //   if (this.state.list[i].description === need) {
+    //     let copyOfList = JSON.parse(JSON.stringify(this.state.list));
+    //     copyOfList[i].quantity = number;
+    //     this.setState({
+    //       list: copyOfList,
+    //     })
+    //   } else {
+    //     let copyOfList = JSON.parse(JSON.stringify(this.state.list));
+    //     copyOfList[need] = number;
+    //     this.setState({
+    //       list: copyOfList,
+    //     })
+    //   }
+    // }
+  }
+
   render () {
     return (
       <div>
         <h1>Grocery List</h1>
+        <AddGrocery modifyList={this.modifyList.bind(this)/*Check if necessary*/}/>
         <GroceryList list={this.state.list}/>
       </div>
     );

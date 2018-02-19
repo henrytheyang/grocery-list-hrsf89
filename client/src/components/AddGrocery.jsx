@@ -3,12 +3,21 @@ import React from 'react';
 class AddGrocery extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
+      description: '',
+      quantity: 0,
     }
   }
 
-  render () {
-    return null;
+  render (props) {
+    return (
+      <div>
+        Description:
+        Quantity:
+        <button onClick={this.props.modifyList}>Update List</button>
+        {/*<button onClick={() => {console.log('props = ', props)}}>Update List</button>*/}
+      </div>
+    );
   }
 }
 
