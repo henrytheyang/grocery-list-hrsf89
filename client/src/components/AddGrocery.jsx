@@ -9,13 +9,33 @@ class AddGrocery extends React.Component {
     }
   }
 
+  enterDescription (e) {
+    this.setState({
+      description: e.target.value
+    });
+  }
+
+  enterQuantity (e) {
+    this.setState({
+      quantity: e.target.value
+    });
+  }
+
   render (props) {
     return (
       <div>
-        Description:
-        Quantity:
-        <button onClick={this.props.modifyList}>Update List</button>
-        {/*<button onClick={() => {console.log('props = ', props)}}>Update List</button>*/}
+        <div>
+          Description: <input type="text" value={this.state.description} onChange={this.enterDescription.bind(this)} />
+        </div>
+        <div>
+          Quantity: <input type="text" value={this.state.quantity} onChange={this.enterQuantity.bind(this)}/>
+        </div>
+        <div>
+          <button onClick={() => {this.props.modifyList(this.state.description, this.state.quantity) }}>Add Grocery</button>
+        </div>
+        <div>
+          <button onClick={() => {this.props.deleteList()}} >Delete List</button>
+        </div>
       </div>
     );
   }

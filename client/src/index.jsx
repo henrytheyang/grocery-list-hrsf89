@@ -17,29 +17,36 @@ class App extends React.Component {
   }
 
   modifyList (need, number) {
-    console.log('Clicked');
-    // for (var i = 0; i < this.state.list.length; i++) {
-    //   if (this.state.list[i].description === need) {
-    //     let copyOfList = JSON.parse(JSON.stringify(this.state.list));
-    //     copyOfList[i].quantity = number;
-    //     this.setState({
-    //       list: copyOfList,
-    //     })
-    //   } else {
-    //     let copyOfList = JSON.parse(JSON.stringify(this.state.list));
-    //     copyOfList[need] = number;
-    //     this.setState({
-    //       list: copyOfList,
-    //     })
-    //   }
-    // }
+    for (var i = 0; i < this.state.list.length; i++) {
+      if (this.state.list[i].description === need) {
+        let copyOfList = JSON.parse(JSON.stringify(this.state.list));
+        copyOfList[i].quantity = number;
+        this.setState({
+          list: copyOfList,
+        })
+      } else {
+        let copyOfList = JSON.parse(JSON.stringify(this.state.list));
+        let listLength = this.state.list.length;
+        let newItem = {id: listLength, quantity: number, description: need}
+        copyOfList.push(newItem)
+        this.setState({
+          list: copyOfList,
+        })
+      }
+    }
+  }
+
+  deleteList () {
+    this.setState({
+      list: [],
+    })
   }
 
   render () {
     return (
       <div>
         <h1>Grocery List</h1>
-        <AddGrocery modifyList={this.modifyList.bind(this)/*Check if necessary*/}/>
+        <AddGrocery modifyList={this.modifyList.bind(this)} deleteList={this.deleteList.bind(this)}/>
         <GroceryList list={this.state.list}/>
       </div>
     );
